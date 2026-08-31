@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillBridge — From Skill Gap to Career Opportunity</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================= -->
+  <!-- PAGE 1: LOGIN SCREEN                                           -->
+  <!-- ============================================================= -->
+  <section id="login-page" class="login-page">
+    <div class="login-card">
+      <div class="brand">
+        <span class="brand-logo">🎓</span>
+        <h1 class="brand-name">SkillBridge</h1>
+      </div>
+      <p class="brand-tagline">From Skill Gap to Career Opportunity</p>
+
+      <form id="login-form" class="login-form">
+        <label for="student-name">Student Name</label>
+        <input type="text" id="student-name" placeholder="e.g. Mayank Gautam" required />
+
+        <label for="student-email">Email</label>
+        <input type="email" id="student-email" placeholder="e.g. mayank@example.com" required />
+
+        <button type="submit" class="btn btn-primary btn-full">Start Assessment</button>
+        <p id="login-error" class="login-error"></p>
+      </form>
+
+      <!-- The demo flow shown to judges -->
+      <div class="flow-strip">
+        <span>ASSESS</span><span class="arrow">↓</span>
+        <span>IDENTIFY</span><span class="arrow">↓</span>
+        <span>IMPROVE</span><span class="arrow">↓</span>
+        <span>MATCH</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- MAIN APP (hidden until login)                                 -->
+  <!-- ============================================================= -->
+  <div id="app" class="app hidden">
+
+    <!-- Sidebar navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-logo">🎓</span>
+        <span class="brand-name">SkillBridge</span>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-page="dashboard">📊 Dashboard</button>
+        <button class="nav-item" data-page="assessment">📝 Assessment</button>
+        <button class="nav-item" data-page="skills">📈 Skills</button>
+        <button class="nav-item" data-page="improvement">🚀 Improvement</button>
+        <button class="nav-item" data-page="working-areas">💼 Working Areas</button>
+      </nav>
+
+      <button id="logout-btn" class="btn btn-ghost logout">↩ Logout</button>
+    </aside>
+
+    <!-- Content area -->
+    <main class="content">
+
+      <!-- ---------- DASHBOARD ---------- -->
+      <section id="dashboard" class="page">
+        <header class="page-header">
+          <div>
+            <h2 id="welcome-heading">Welcome, Student</h2>
+            <p class="muted">Career Goal: <strong>Data Analyst</strong></p>
+          </div>
+          <div class="readiness-badge">
+            <span class="readiness-label">Career Readiness</span>
+            <span id="readiness-value" class="readiness-value">65%</span>
+          </div>
+        </header>
+
+        <div class="grid">
+          <!-- Skills available -->
+          <div class="card">
+            <h3 class="card-title">🧩 Skills Available</h3>
+            <div id="skills-available" class="chip-row"></div>
+          </div>
+
+          <!-- Current skill levels -->
+          <div class="card">
+            <h3 class="card-title">📊 Current Skill Levels</h3>
+            <div id="dashboard-skill-bars"></div>
+          </div>
+
+          <!-- Skill improvement snapshot -->
+          <div class="card">
+            <h3 class="card-title">🚀 Skill Improvement</h3>
+            <p id="dashboard-improvement" class="muted">
+              Take the assessment to discover your weakest skill and get tips.
+            </p>
+          </div>
+
+          <!-- Recommended working areas snapshot -->
+          <div class="card">
+            <h3 class="card-title">💼 Recommended Working Areas</h3>
+            <ul id="dashboard-areas" class="mini-list"></ul>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" data-page="assessment">Start Skill Assessment →</button>
+      </section>
+
+      <!-- ---------- ASSESSMENT ---------- -->
+      <section id="assessment" class="page hidden">
+        <header class="page-header">
+          <h2>📝 Skill Assessment</h2>
+          <p class="muted">8 quick questions across Python, Excel, SQL &amp; Statistics.</p>
+        </header>
+
+        <form id="quiz-form">
+          <div id="quiz-questions"></div>
+          <button type="submit" class="btn btn-primary">Submit Assessment</button>
+          <p id="quiz-error" class="login-error"></p>
+        </form>
+      </section>
+
+      <!-- ---------- SKILLS / RESULTS ---------- -->
+      <section id="skills" class="page hidden">
+        <header class="page-header">
+          <h2>📈 Assessment Result</h2>
+          <p class="muted" id="result-status">Complete the assessment to see your results.</p>
+        </header>
+
+        <div id="result-block" class="hidden">
+          <div class="card result-summary">
+            <h3 class="card-title">Assessment Completed ✓</h3>
+            <div class="score-circle">
+              <span id="overall-score">0%</span>
+              <small>Overall Score</small>
+            </div>
+          </div>
+
+          <h3 class="section-title">Skill-wise Results</h3>
+          <div id="result-skill-bars" class="grid"></div>
+        </div>
+      </section>
+
+      <!-- ---------- IMPROVEMENT ---------- -->
+      <section id="improvement" class="page hidden">
+        <header class="page-header">
+          <h2>🚀 Your Skill Gaps</h2>
+          <p class="muted">Personalized Recommendations (rule-based, no AI model running).</p>
+        </header>
+
+        <div id="improvement-block">
+          <p class="muted">Take the assessment first to identify your skill gaps.</p>
+        </div>
+      </section>
+
+      <!-- ---------- WORKING AREAS ---------- -->
+      <section id="working-areas" class="page hidden">
+        <header class="page-header">
+          <h2>💼 Recommended Working Areas</h2>
+          <p class="muted">Career matches calculated from your skill scores.</p>
+        </header>
+
+        <div id="areas-block" class="grid"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
